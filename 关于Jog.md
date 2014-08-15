@@ -8,3 +8,8 @@ Tags|博客
 Excerpt|关于Jog。
 -->
 这是关于Jog的Post。
+
+    public string Getlink()
+    {
+        return "";
+    }
