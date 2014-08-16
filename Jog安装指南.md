@@ -5,7 +5,7 @@ Date|2014-08-16 21:45:00
 Status|Publish
 Type|Post
 Tags|Blog
-Excerpt|Jog在Ubuntu VPS上的详细安装方法，设计到mono,nginx,supervisor等。
+Excerpt|Jog在Ubuntu VPS上的详细安装方法，涉及到mono,nginx,supervisor等。
 -->
 关于Jog的介绍请参照这个[帖子][1]。
 
