@@ -18,7 +18,9 @@ Excerpt|Jog在Ubuntu VPS上的详细安装方法，设计到mono,nginx,superviso
     sudo apt-get update
     sudo apt-get install mono-devel
 2、在本机安装mono。
+
 3、修改源码的配置文件appSettings节点下内容。
+
 4、本机编译源码。
 
     "C:\Program Files (x86)\Mono-3.0.2\bin\xbuild.bat" Jog.sln
