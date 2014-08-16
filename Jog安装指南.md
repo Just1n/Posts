@@ -21,7 +21,7 @@ Excerpt|Jog在Ubuntu VPS上的详细安装方法，设计到mono,nginx,superviso
 3、修改源码的配置文件appSettings节点下内容。
 4、本机编译源码。
 
-    "C:\Program Files (x86)\Mono-3.0.2\bin\xbuild.bat" NancyDemo.sln
+    "C:\Program Files (x86)\Mono-3.0.2\bin\xbuild.bat" Jog.sln
 把编译好的源码上传到Ubuntu上，假设路径是`/mono/app/jog`
 
 5、Ubuntu安装Nginx。
@@ -35,7 +35,7 @@ Excerpt|Jog在Ubuntu VPS上的详细安装方法，设计到mono,nginx,superviso
         root /mono/app/jog;
     
         location /Content/ {
-            alias /var/www/nancydemo/Content/;
+            alias /mono/app/jog/Content/;
             location ~*  \.(jpg|jpeg|png|gif|ico|css|js|ttf)$ {
                 expires 365d;
             }
