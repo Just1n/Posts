@@ -5,7 +5,7 @@ Date|2014-08-17 22:28:00
 Status|Publish
 Type|Post
 Tags|javascript,tech
-Excerpt|前后大概花了差不多一个礼拜不到的业余下班时间。用的是Nancy------一个轻量级的.Net Web框架。评论系统用的是多说。正文的样式上用了lepture的yue.css。博客文章读取部分借鉴了Purelog，从github clone过去，后面会加上Dropbox等网盘选项。
+Excerpt|Javascirpt有三个特性：1、Javascript允许你引用在当前函数以外定义的变量。2、即使外部函数已经返回当前函数仍然可以引用在外部函数所定义的变量。3、闭包可以更新外部变量的值。
 -->
 先看一段简单的javascript代码：
 
