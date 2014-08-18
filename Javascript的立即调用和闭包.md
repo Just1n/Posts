@@ -30,7 +30,7 @@ Javascirpt有三个特性：1、Javascript允许你引用在当前函数以外�
 
 要解决这个问题也很简单，就是使用Javascript**立即调用**的特性，把代码稍微修改一下即可。
 
-    function warpEle(p){
+    function warpEle(a){
         var result = [], i, n;
         for(i = 0, n = a.length; i < n; i++){
             (function(j){
