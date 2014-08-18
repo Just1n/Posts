@@ -9,7 +9,7 @@ Excerpt|Javascirpt有三个特性：1、Javascript允许你引用在当前函数
 -->
 先看一段简单的javascript代码：
 
-    function warpEle(p){
+    function warpEle(a){
         var result = [], i, n;
         for(i = 0, n = a.length; i < n; i++){
             result[i] = function() { return a[i]; };
