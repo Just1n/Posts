@@ -9,7 +9,7 @@ Excerpt|对象是Javascript中的基本数据结构。直观地看，对象表�
 -->
 对象是Javascript中的基本数据结构。直观地看，对象表示字符串与值映射的另一个表格。Javascript支持继承，但不像许多传统的语言，它的继承机制基于原型而不是类。在Javascript中对象是从其他对象中继承而来。每个对象与其他一些对象是相关的，这些对象称为它的原型。
 
-###prototype、getPrototypeOf和\__proto__之间的不同
+###`prototype`、`getPrototypeOf`和`__proto__`之间的不同
 
  - `C.prototype`用于建立由`new C()`创建的对象的原型
  - `Object.getPrototypeOf(obj)`是ES5中用来获取obj对象的原型对象的标准方法。
@@ -38,12 +38,12 @@ User函数带有一个默认的prototype属性，其包含一个开始几乎为�
 
     u.__proto__ === User.prototype; //true
 
-###尽量使用Object.getPrototypeOf函数而不要使用\__proto__属性
-ES5引入`Object.getPrototypeOf`函数作为获取对象原型的标准API，但在这之前大量的Javascript引擎早就使用一个特殊的\__proto__属性来达到相同的目的。然而并不是所有的Javascript环境都支持通过\__proto__属性来获取对象的原型，因此该属性并不是完全兼容的。例如，对于拥有`null`原型的对象，不同的环境处理得就不一样。在一些环境中，\__proto__属性继承自Object.prototype，因此拥有null原型的对象没有这个特殊的\__proto__属性。
+###尽量使用`Object.getPrototypeOf`函数而不要使用`__proto__`属性
+ES5引入`Object.getPrototypeOf`函数作为获取对象原型的标准API，但在这之前大量的Javascript引擎早就使用一个特殊的`__proto__`属性来达到相同的目的。然而并不是所有的Javascript环境都支持通过`__proto__`属性来获取对象的原型，因此该属性并不是完全兼容的。例如，对于拥有`null`原型的对象，不同的环境处理得就不一样。在一些环境中，`__proto__`属性继承自Object.prototype，因此拥有null原型的对象没有这个特殊的`__proto__`属性。
 
     var empty = Object.create(null);
     "__proto__" in empty; //false
-而其他的环境总是特别的处理\__proto__属性而不管对象的状态。
+而其他的环境总是特别的处理`__proto__`属性而不管对象的状态。
 
     var empty = Object.create(null);
     "__proto__" in empty; //true
@@ -59,12 +59,12 @@ ES5引入`Object.getPrototypeOf`函数作为获取对象原型的标准API，但
 	    }
     }
 
-###始终不要修改\__proto__属性
+###始终不要修改`__proto__`属性
 `__proto__`属性很特殊，它提供了`Object.getPrototypeOf`方法所不具备的额外的能力，即修改对象原型链的能力。这种能力实际上上会造成严重的影响，应当避免使用。避免修改`__proto__`属性的最明显的原因是可移植性问题。因为并不是所有的平台都支持改变对象原型的特性，所以根本无法编写可移植的代码。
 
 避免修改`__proto__`属性的另一个原因是性能问题。所有现代的Javascript引擎都深度优化了获取和设置对象属性的行为，因为这些都是最常见的Javascript程序的操作。这些优化都是基于引擎对对象结构的认识上。当更改了对象的内部结构（如添加和删除该对象或其原型链中的对象的属性），将会使一些优化失效。修改`__proto__`属性实际上改变了继承结构本身，这可能是最具破坏性的修改。比起普通的属性修改，修改`__proto__`属性会导致更多的优化失效。
 
-###构造函数与new操作符的关系
+###构造函数与`new`操作符的关系
 当使用上述User函数构造一个新的对象时，程序依赖于调用者是否记得使用new操作符来调用该构造函数。如果调用者忘记使用new关键字，那么函数的接收者将是全局对象。
 
     var u = User("Just1n","d8b74.......");
