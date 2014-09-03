@@ -5,9 +5,9 @@ Date|2014-09-02 21:03:00
 Status|Publish
 Type|Post
 Tags|javascript,tech
-Excerpt|Array.prototype中的标准方法被设计成其他对象可服用的方法，即使这些对象并没有继承Array。许多这样的类数组对象接踵而至地出现在Javascript的不同地方。
+Excerpt|Array.prototype中的标准方法被设计成其他对象可复用的方法，即使这些对象并没有继承Array。许多这样的类数组对象接踵而至地出现在Javascript的不同地方。
 -->
-Array.prototype中的标准方法被设计成其他对象可服用的方法，即使这些对象并没有继承Array。许多这样的类数组对象接踵而至地出现在Javascript的不同地方。
+Array.prototype中的标准方法被设计成其他对象可复用的方法，即使这些对象并没有继承Array。许多这样的类数组对象接踵而至地出现在Javascript的不同地方。
 
 一个非常好的例子就是arguments对象。arguments对象并没有继承Array.prototype，它看起来很像是一个数组，但它并不是一个数组对象，所以我们不能简单的通过调用arguments.forEach方法来遍历每一个参数。我们可以用call方法来指定Array.prototype.forEach的接收者：
 
@@ -36,8 +36,8 @@ forEach方法是一个Function对象，这意味着它继承了Function.prototyp
     }); //["A","B","C"]
     
 数组还有另外两个需要注意的行为：
-- 将length属性值设为小于n的值会自动地删除索引值大于或等于n的所有属性。
-- 增加一个索引值为n（大于或等于length属性值）的属性会自动地设置length属性为n+1。
+-将length属性值设为小于n的值会自动地删除索引值大于或等于n的所有属性。
+-增加一个索引值为n（大于或等于length属性值）的属性会自动地设置length属性为n+1。
 
 第二条行为尤其难以完成，因为它需要监控索引属性的增加以自动地更新length属性。幸运的是，对于使用Array.prototype中的方法，这两条规则都不是必须的，因为在增加或删除索引属性的时候它们都会强制地更新length属性。
 
