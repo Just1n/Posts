@@ -1,7 +1,7 @@
 <!--
 Title|Javascript的对象和原型
 Id|javascript-object-and-prototype
-Date|2014-08-30 14:20:00
+Date|2015-08-30 14:20:00
 Status|Publish
 Type|Post
 Tags|javascript,tech
