@@ -1,7 +1,7 @@
 <!--
 Title|Javascript的高阶函数
 Id|js-higher-order-func
-Date|2014-08-24 21:43:00
+Date|2015-08-24 21:43:00
 Status|Publish
 Type|Post
 Tags|javascript,tech
