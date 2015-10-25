@@ -1,7 +1,7 @@
 <!--
 Title|Cmder简单使用小结
 Id|cmder-simple-use
-Date|2014-09-10 20:33:00
+Date|2015-09-10 20:33:00
 Status|Publish
 Type|Post
 Tags|tools,tech
