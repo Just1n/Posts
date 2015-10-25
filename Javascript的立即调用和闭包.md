@@ -1,7 +1,7 @@
 <!--
 Title|Javascript的立即调用和闭包
 Id|javascript-IIFE-and-closure
-Date|2014-08-17 22:28:00
+Date|2015-08-17 22:28:00
 Status|Publish
 Type|Post
 Tags|javascript,tech
