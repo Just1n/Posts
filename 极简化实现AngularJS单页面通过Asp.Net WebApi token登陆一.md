@@ -1,22 +1,25 @@
 <!--
 Title|极简化实现AngularJS单页面通过Asp.Net WebApi token登陆一
 Id|angular-minimal-login-with-token-by-aspnetwebapi-part1
-Date|2015-11-14 20:12:00
+Date|2015-11-13 20:12:00
 Status|Publish
 Type|Post
 Tags|tech,AngularJS,WebApi
 Excerpt|AngularJS是Google推出的一个优秀的MVVM JS框架，它支持模块化、自动化双向数据绑定、语义化标签、依赖注入等等。WebApi是微软推出的一个HTTP服务解决方案，它可以给客户端提供标准化的restful接口服务。OAuth是一个关于授权（authorization）的开放网络标准，在全世界得到广泛应用。本文就是用这三者实现的一个最简单登陆模型。
 -->
 
+本文源码：[源码下载][1]
+Part2：[极简化实现AngularJS单页面通过Asp.Net WebApi token登陆二][2]
+
 AngularJS是Google推出的一个优秀的MVVM JS框架，它支持模块化、自动化双向数据绑定、语义化标签、依赖注入等等。WebApi是微软推出的一个HTTP服务解决方案，它可以给客户端提供标准化的restful接口服务。OAuth是一个关于授权（authorization）的开放网络标准，在全世界得到广泛应用。本文就是用这三者实现的一个最简单登陆模型。
 
-阅读本文，需要一些基本的[Asp.Net WebApi][1],[AngularJS][2]和[OAuth2.0][3]知识。
+阅读本文，需要一些基本的[Asp.Net WebApi][3],[AngularJS][4]和[OAuth2.0][5]知识。
 
 ## 一、WebApi服务端
 ### 1、新建一个空的WebApi项目
 本文所用的环境是VS2015和SQL Server2014，所选的.Net Framework版本是4.5。
 新建一个空解决方案，取名`AngularAuthenticDemo`,再在此解决方案下新建一个空的WebApi项目，取名`AngularAuthDemo.Api`：
-![此处输入图片的描述][4]
+![此处输入图片的描述][6]
 ### 2、安装需要的Nuget包
 
     Install-Package Microsoft.AspNet.WebApi.Owin
@@ -243,8 +246,8 @@ AngularJS是Google推出的一个优秀的MVVM JS框架，它支持模块化、�
             }
         }
     }
-`AccountController`提供了一个`Register`Action，供用户注册。`AllowAnonymous`属性，确保任何人都可以通过`http://localhost:port/api/account/register`注册。**现在已经可以用[Postman][5]来测试了**（略）。如果返回code 200，那么会自动在数据库里创建如下表：
-![此处输入图片的描述][6]
+`AccountController`提供了一个`Register`Action，供用户注册。`AllowAnonymous`属性，确保任何人都可以通过`http://localhost:port/api/account/register`注册。**现在已经可以用[Postman][7]来测试了**（略）。如果返回code 200，那么会自动在数据库里创建如下表：
+![此处输入图片的描述][8]
 ### 7、添加一个必须由已登陆用户才能访问的Orders Controller
 在`Controllers`文件夹下新建空的Controller，取名`OrdersController`，代码如下：
 
@@ -267,7 +270,7 @@ AngularJS是Google推出的一个优秀的MVVM JS框架，它支持模块化、�
     
         public class Order
         {
-            public int OrderId { get; set; }
+            public int OrderID { get; set; }
             public string CustomerName { get; set; }
             public string ShipperCity { get; set; }
             public Boolean IsShipped { get; set; }
@@ -276,11 +279,11 @@ AngularJS是Google推出的一个优秀的MVVM JS框架，它支持模块化、�
             {
                 var orderList = new List<Order>
                 {
-                    new Order {OrderId = 10248, CustomerName = "Han Meimei", ShipperCity = "Shanghai", IsShipped = true },
-                    new Order {OrderId = 10249, CustomerName = "Li Lei", ShipperCity = "Beijing", IsShipped = false},
-                    new Order {OrderId = 10250,CustomerName = "Zhang San", ShipperCity = "Nanjing", IsShipped = false },
-                    new Order {OrderId = 10251,CustomerName = "Wang Ermazi", ShipperCity = "Suzhou", IsShipped = false},
-                    new Order {OrderId = 10252,CustomerName = "Li Si", ShipperCity = "Nanchang", IsShipped = true}
+                    new Order {OrderID = 10248, CustomerName = "Han Meimei", ShipperCity = "Shanghai", IsShipped = true },
+                    new Order {OrderID = 10249, CustomerName = "Li Lei", ShipperCity = "Beijing", IsShipped = false},
+                    new Order {OrderID = 10250,CustomerName = "Zhang San", ShipperCity = "Nanjing", IsShipped = false },
+                    new Order {OrderID = 10251,CustomerName = "Wang Ermazi", ShipperCity = "Suzhou", IsShipped = false},
+                    new Order {OrderID = 10252,CustomerName = "Li Si", ShipperCity = "Nanchang", IsShipped = true}
                 };
     
                 return orderList;
@@ -367,8 +370,8 @@ AngularJS是Google推出的一个优秀的MVVM JS框架，它支持模块化、�
             }
         }
 第一个函数，是验证客户端，在这个例子中，我们只有一个客户端（Angular），所以我们直接validated。
-第二个函数，我们用AuthRepository来验证用户的用户名和密码，一旦验证成功，就新建一个`ClaimsIdentity`类，把一些验证信息放里面（这里我们后面将会用`bearer token`），至于`ClaimsIdentity`是什么东东，可以看这篇[文章][7]
-`context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });`语句是为了给[CORS][8]使用。
+第二个函数，我们用AuthRepository来验证用户的用户名和密码，一旦验证成功，就新建一个`ClaimsIdentity`类，把一些验证信息放里面（这里我们后面将会用`bearer token`），至于`ClaimsIdentity`是什么东东，可以看这篇[文章][9]
+`context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });`语句是为了给[CORS][10]使用。
 
 ### 10、允许跨域访问（CORS）ASP.NET Web API
 安装Nuget包：
@@ -388,14 +391,18 @@ AngularJS是Google推出的一个优秀的MVVM JS框架，它支持模块化、�
 
         }
 
-OK,至此我们已经完成了Asp.Net WebApi服务端的开发，可以通过[Postman][5]来测试是否成功。
+OK,至此我们已经完成了Asp.Net WebApi服务端的开发，可以通过[Postman][11]来测试是否成功。
 下一篇，是用AngularJS写客户端。
 
-  [1]: http://www.asp.net/web-api
-  [2]: https://angularjs.org/
-  [3]: http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html
-  [4]: http://ww3.sinaimg.cn/large/655f1de0gw1ey0n78ji2bj20rc0lbn23.jpg
-  [5]: https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?utm_source=chrome-app-launcher-info-dialog
-  [6]: http://ww3.sinaimg.cn/large/655f1de0gw1ey0r3iiio1j207305y0tn.jpg
-  [7]: http://www.cnblogs.com/jesse2013/p/aspnet-identity-claims-based-authentication-and-owin.html
-  [8]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+
+  [1]: https://github.com/Just1n/AngularAuthByAspNetWebApiDemo
+  [2]: http://just1n.net/2015/11/angular-minimal-login-with-token-by-aspnetwebapi-part1
+  [3]: http://www.asp.net/web-api
+  [4]: https://angularjs.org/
+  [5]: http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html
+  [6]: http://ww3.sinaimg.cn/large/655f1de0gw1ey0n78ji2bj20rc0lbn23.jpg
+  [7]: https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?utm_source=chrome-app-launcher-info-dialog
+  [8]: http://ww3.sinaimg.cn/large/655f1de0gw1ey0r3iiio1j207305y0tn.jpg
+  [9]: http://www.cnblogs.com/jesse2013/p/aspnet-identity-claims-based-authentication-and-owin.html
+  [10]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+  [11]: https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?utm_source=chrome-app-launcher-info-dialog
