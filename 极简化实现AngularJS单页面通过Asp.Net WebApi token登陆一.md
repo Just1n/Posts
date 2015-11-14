@@ -9,6 +9,7 @@ Excerpt|AngularJS是Google推出的一个优秀的MVVM JS框架，它支持模�
 -->
 
 本文源码：[源码下载][1]
+
 Part2：[极简化实现AngularJS单页面通过Asp.Net WebApi token登陆二][2]
 
 AngularJS是Google推出的一个优秀的MVVM JS框架，它支持模块化、自动化双向数据绑定、语义化标签、依赖注入等等。WebApi是微软推出的一个HTTP服务解决方案，它可以给客户端提供标准化的restful接口服务。OAuth是一个关于授权（authorization）的开放网络标准，在全世界得到广泛应用。本文就是用这三者实现的一个最简单登陆模型。
