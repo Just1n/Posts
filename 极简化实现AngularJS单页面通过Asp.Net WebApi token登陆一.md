@@ -397,7 +397,7 @@ OK,至此我们已经完成了Asp.Net WebApi服务端的开发，可以通过[Po
 
 
   [1]: https://github.com/Just1n/AngularAuthByAspNetWebApiDemo
-  [2]: http://just1n.net/2015/11/angular-minimal-login-with-token-by-aspnetwebapi-part1
+  [2]: http://just1n.net/2015/11/angular-minimal-login-with-token-by-aspnetwebapi-part2
   [3]: http://www.asp.net/web-api
   [4]: https://angularjs.org/
   [5]: http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html
